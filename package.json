@@ -1,0 +1,28 @@
+{
+  "name": "easy-rabbit",
+  "version": "1.0.0",
+  "description": "Use the main features of rabbit easily",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/donflopez/easy-rabbit.git"
+  },
+  "keywords": [
+    "rabbit",
+    "rabbitmq",
+    "sync",
+    "amqplib",
+    "easy",
+    "synchronous",
+    "fibers"
+  ],
+  "author": "Francisco López <donflopez@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/donflopez/easy-rabbit/issues"
+  },
+  "homepage": "https://github.com/donflopez/easy-rabbit#readme"
+}
