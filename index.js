@@ -66,13 +66,17 @@ let Rabbit = function () {
 
     },
 
-    getFrom: function getFrom( tail, cb ) {
+    getFrom: function getFrom( tail, prefetch, cb ) {
+
+      if (typeof prefetch === 'function') {
+        cb = prefetch;
+        prefetch = 1;
+      }
 
       channel.prefetch( 1 );
       channel.assertQueue( tail );
 
       channel.consume( tail, ( msg ) => {
-        // TODO: add a timeout exception.
         cb( JSON.parse( msg.content.toString().replace( new RegExp( '\\$', 'g' ), '_f_' ) ), msg );
       } );
     },
@@ -84,6 +88,10 @@ let Rabbit = function () {
 
     ack: function ( msg ) {
       channel.ack( msg );
+    },
+
+    close: function (cb) {
+      channel.close(cb);
     }
   };
 };
