@@ -1,6 +1,6 @@
 {
   "name": "easy-rabbit",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Use the main features of rabbit easily",
   "main": "index.js",
   "scripts": {

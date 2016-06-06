@@ -47,23 +47,19 @@ let Rabbit = function () {
 
   return {
     connect: function connect( rabbitUrl ) {
-      return Future.task(function () {
+      if ( connection ) {
 
-        if ( connection ) {
-
-          if ( rabbitUrl !== memoRabbitUrl ) {
-            connection.disconnect();
-            connection = null;
-          }
+        if ( rabbitUrl !== memoRabbitUrl ) {
+          connection.disconnect();
+          connection = null;
         }
+      }
 
-        if ( !connection ) {
-          createChannel( getConnection( rabbitUrl ) );
-        }
+      if ( !connection ) {
+        createChannel( getConnection( rabbitUrl ) );
+      }
 
-        return this;
-      });
-
+      return this;
     },
 
     getFrom: function getFrom( tail, prefetch, cb ) {
@@ -92,7 +88,9 @@ let Rabbit = function () {
 
     close: function (cb) {
       channel.close(cb);
-    }
+    },
+
+    run: Future.task
   };
 };
 
