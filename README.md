@@ -15,7 +15,7 @@ var Rabbit = require('easy-rabbit');
 // Async method to connect to rabbit.
 
 Rabbit.connect('amqp://url-to-rab.bit:5672');
-``` 
+```
 
 * Rabbit.getFrom
 
@@ -45,4 +45,26 @@ Rabbit.sendTo('TAIL_NAME', json);
 // Method to close the connection
 
 Rabbit.close();
+```
+
+* Rabbit.run
+
+```
+// Every command of Rabbit must be inside the run function.
+
+Rabbit.run(function () {
+  Rabbit.connect('amqp://url-to-rab.bit:5672');
+
+  Rabbit.sendTo('TAIL_NAME', {hello: 'world'});
+
+  Rabbit.getFrom('TAIL_NAME', function (json, rawMsg) {
+
+      doSomeStuff(json);
+
+      Rabbit.ack(rawMsg);
+
+  });
+
+  Rabbit.close();
+});
 ```
